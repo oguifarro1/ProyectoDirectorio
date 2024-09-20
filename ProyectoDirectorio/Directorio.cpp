@@ -8,17 +8,13 @@
 #include "Directorio.hpp"
 
 
-// Constructor de la clase Nodo
 Nodo::Nodo(string _nombre) : nombre(_nombre) {
-    // No es necesario realizar ninguna acción adicional aquí
 }
 
-// Constructor de la clase Directorio
 Directorio::Directorio(string nombreRaiz) {
     raiz = new Nodo(nombreRaiz);
 }
 
-// Método para buscar un nodo por su nombre
 Nodo* Directorio::buscarNodo(Nodo* actual, const string& nombre) {
     if (actual->nombre == nombre) {
         return actual;
@@ -30,7 +26,6 @@ Nodo* Directorio::buscarNodo(Nodo* actual, const string& nombre) {
     return nullptr;
 }
 
-// Método para agregar un nuevo directorio
 void Directorio::agregar(const string& padre, const string& nombreNuevo) {
     Nodo* nodoPadre = buscarNodo(raiz, padre);
     if (nodoPadre) {
@@ -41,7 +36,6 @@ void Directorio::agregar(const string& padre, const string& nombreNuevo) {
     }
 }
 
-// Método para buscar un directorio
 string Directorio::buscar(const string& nombre) {
     Nodo* encontrado = buscarNodo(raiz, nombre);
     if (encontrado) {
@@ -51,7 +45,6 @@ string Directorio::buscar(const string& nombre) {
     }
 }
 
-// Método para eliminar un nodo y sus subdirectorios
 void Directorio::eliminarNodo(Nodo*& actual) {
     for (Nodo* hijo : actual->hijos) {
         eliminarNodo(hijo);
@@ -60,7 +53,6 @@ void Directorio::eliminarNodo(Nodo*& actual) {
     actual = nullptr;
 }
 
-// Método para eliminar un directorio y sus subdirectorios
 void Directorio::eliminar(const string& nombre) {
     Nodo* nodoEliminar = buscarNodo(raiz, nombre);
     if (nodoEliminar) {
@@ -71,7 +63,6 @@ void Directorio::eliminar(const string& nombre) {
     }
 }
 
-// Método para mostrar los subdirectorios de un nodo
 void Directorio::mostrarDirectorio(Nodo* actual, int nivel) {
     for (int i = 0; i < nivel; ++i) {
         cout << "\t";
@@ -82,7 +73,6 @@ void Directorio::mostrarDirectorio(Nodo* actual, int nivel) {
     }
 }
 
-// Método para mostrar un directorio y sus subdirectorios
 void Directorio::mostrar(const string& nombre) {
     Nodo* nodoMostrar = buscarNodo(raiz, nombre);
     if (nodoMostrar) {
